@@ -1,0 +1,47 @@
+---
+title: "Reinforcement Learning"
+author: "Ítalo Sánchez Bermúdez"
+format: html
+editor: visual
+---
+
+## Introducción
+
+## Tarea 1
+```{r}
+library(devtools)
+library(milestones)
+library(tidyverse)
+```
+
+```{r}
+library(gt)        ## Tables
+## Specific packages
+library(milestones)
+## Initialize defaults
+## Initialize defaults
+column <- lolli_styles()
+
+data <- read_csv(col_names=TRUE, show_col_types=FALSE, file='rl_time_line.csv')
+
+## Sort the table by date
+data <- data |>
+  arrange(date)
+
+## Build a table
+gt(data) |>
+  #cols_hide(columns = event) |>
+  tab_style(cell_text(v_align = "top"),
+            locations = cells_body(columns = date)) |>
+  tab_source_note(source_note = "Source: Sutton and Barto (2018)") 
+```
+
+```{r}
+## Adjust some defaults
+column$color <- "black"
+column$size  <- 15
+column$source_info <- "Source: Sutton and Barto (2018)"
+
+## Milestones timeline
+milestones(datatable = data, styles = column)
+```
